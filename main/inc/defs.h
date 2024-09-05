@@ -6,6 +6,9 @@
 #define MAXSIPNUMBER 3
 
 
+
+
+
 typedef enum LED_STATES{
     STANDBY_LED,
     SEARCH_FOR_WIFI,

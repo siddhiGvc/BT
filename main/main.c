@@ -44,6 +44,8 @@ void app_main(void)
     //esp_log_level_set("*", ESP_LOG_NONE);
     // set totals to 0
 
+
+    
     MQTTRequired = 0;
     for (int i = 0 ; i < 7 ; i++)
     {
@@ -71,7 +73,10 @@ void app_main(void)
     ICH_init();
     ESP_LOGI(TAG, "*Starting S2P#");
     s2p_init();
+    // ESP_LOGI(TAG, "*Starting BT acceptor");
+    // bt_init();
     Out4094(0x00);; // set all outputs inactive
+    
 
     // for (int i = 0 ; i < 3 ; i++)
     // {
