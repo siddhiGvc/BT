@@ -77,4 +77,4 @@ extern void mqtt_app_start(void);
 
 
 //BT
-// extern void bt_init(void);
+extern void bt_init(void);

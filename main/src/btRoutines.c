@@ -24,13 +24,38 @@
 #include "sys/time.h"
 
 
+#include <stdlib.h>
+#include "freertos/event_groups.h"
+#include "esp_system.h"
+#include "esp_wifi.h"
+#include "esp_mac.h"
+#include "esp_event.h"   
+#include "esp_log.h"
+#include "nvs_flash.h"
+#include "driver/gpio.h"
+#include "lwip/err.h"
+#include "lwip/sys.h"
+#include "lwip/sockets.h"
+#include "esp_http_client.h"
+#include "esp_https_ota.h"
+#include "esp_timer.h"
+#include "esp_ota_ops.h"
+#include "driver/uart.h"
+#include "esp_netif.h"
+#include "rom/ets_sys.h"
+#include "esp_smartconfig.h"
+#include <sys/socket.h>
+#include <sys/socket.h>
+#include <netdb.h>
+#include <arpa/inet.h>
 
-#define SPP_TAG "SPP_ACCEPTOR_DEMO"
-#define SPP_SERVER_NAME "SPP_SERVER"
-#define EXAMPLE_DEVICE_NAME "ESP_SPP_ACCEPTOR"
-#define SPP_SHOW_DATA 0
-#define SPP_SHOW_SPEED 1
-#define SPP_SHOW_MODE SPP_SHOW_DATA   /*Choose show mode: show data or speed*/
+#include "externVars.h"
+#include "calls.h"
+
+
+
+
+
 
 
 static const esp_spp_mode_t esp_spp_mode = ESP_SPP_MODE_CB;
@@ -43,7 +68,7 @@ static const esp_spp_sec_t sec_mask = ESP_SPP_SEC_AUTHENTICATE;
 static const esp_spp_role_t role_slave = ESP_SPP_ROLE_SLAVE;
 
 
-
+void bt_init();
 
 static char *bda2str(uint8_t * bda, char *str, size_t size)
 {
@@ -216,7 +241,7 @@ void esp_bt_gap_cb(esp_bt_gap_cb_event_t event, esp_bt_gap_cb_param_t *param)
     return;
 }
 
-void app_main(void)
+void bt_init(void)
 {
     char bda_str[18] = {0};
     esp_err_t ret = nvs_flash_init();
